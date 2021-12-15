@@ -1,3 +1,10 @@
+noseX=0;
+noseY=0;
+
+rightWristX=0;
+leftWristX=0;
+difference=0;
+
 function preload() {
 
 }
@@ -18,6 +25,9 @@ function setup() {
 
 function draw() {
     background("#00FF00");
+    fill("#FF0000")
+    text("Hello",noseX,noseY);
+    textSize(difference);
 
 
 }
@@ -29,6 +39,12 @@ function modelLoaded() {
 function gotPoses(result) {
     if (result.length > 0) {
         console.log(result);
-
+        noseX=result[0].pose.nose.x;
+        noseY=result[0].pose.nose.y;
+        console.log("Nose X = "+noseX+" Nose Y = "+noseY);
+        rightWristX=result[0].pose.rightWrist.x;
+        leftWristX=result[0].pose.leftWrist.x;
+        console.log("Right Wrist x = "+rightWristX+" Left Wrist X = "+leftWristX);
+        difference=floor(rightWristX-leftWristX);
     }
 }
